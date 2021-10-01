@@ -1,0 +1,35 @@
+.signin {
+  background-color: #edeff3;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
+
+.subclass {
+    display: flex;
+    flex-direction: column;
+    height: 550px;
+    width: 500px;
+    background-color: white;
+    align-items: center;
+    box-shadow: 10px;
+}
+
+.bottom-links {
+    display: flex;
+    flex-direction: row;
+    color: black;
+    margin: 10px auto;
+}
+
+img {
+    margin: 20px;
+    border-color: #edeff3;
+    width: auto;
+    height: 200px;
+}
+
