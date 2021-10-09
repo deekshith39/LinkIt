@@ -1,21 +1,54 @@
 // components
 import NavBar from '../components/NavBar'
+import { ProfileCard } from '../components/ProfileCard'
+import '@fontsource/roboto/300.css';
+import '@fontsource/roboto/400.css';
+import '@fontsource/roboto/500.css';
+import '@fontsource/roboto/700.css';
 
 // Hooks
-import { useContext, useEffect } from 'react'
+import { useContext, useEffect, useState } from 'react'
 
 // context
 import { UserContext } from '../contexts/UserContext'
 
+// firebase
+import { doc, getDoc } from "firebase/firestore";
+import firebase from '../firebase/firebase';
+
 const Profile = () => {
     const [user, setUser] = useContext(UserContext)
+    const [userData, setUserData] = useState({})
+    const [busy, setBusy] = useState(false)
+    const [render, setRender] = useState(false)
+
+    useEffect(() => {
+        if(user) {
+            getUserProfile()
+        }
+    }, [user])
+
+    async function getUserProfile() {
+        setBusy(true)
+        
+        const docRef = doc(firebase.db, "users", user);
+        const docSnap = await getDoc(docRef);
+        setUserData(docSnap.data())
+
+        setBusy(false)
+    }
 
     return (
         <div>
-            <NavBar isUser={user}/>
-            <h1>Profile</h1>
-        </div>  
+            <NavBar isUser={user} />
+            <div style={{
+                marginTop: '100px',
+                marginLeft: '50px'
+            }}>
+                {!busy ? <ProfileCard user={user} data={userData} /> : <h1>Loading...</h1>}
+            </div>
+        </div>
     );
 }
- 
+
 export default Profile;

@@ -13,7 +13,8 @@ export const UserProvider = (props) => {
         
         const unsubscribe = firebase.auth.onAuthStateChanged((user) => {
             if (user) {
-                setUser(user.displayName);
+                // console.log(user.uid)
+                setUser(user.uid);
             } else {
                 setUser(null);
             }

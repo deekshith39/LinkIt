@@ -65,7 +65,8 @@ const SignIn = () => {
       firebase.signIn(email, password)
         .then(() => {
           history.push('/')
-          window.location.reload();
+          // console.log(email)
+          //window.location.reload();
           toastMessage.success("Login Successful!")
         })
         .catch((err) => toastMessage.error(err.message))

@@ -20,7 +20,7 @@ import { useHistory } from "react-router";
 import { UserContext } from '../contexts/UserContext';
 
 // firebase
-import { collection, addDoc } from "firebase/firestore";
+import { collection, addDoc, doc, updateDoc, arrayRemove, arrayUnion } from "firebase/firestore";
 import firebase from "../firebase/firebase";
 
 // validators
@@ -53,6 +53,13 @@ const Create = () => {
             setDesc(value);
         }
     }
+
+    async function updateUserProfile(postId) {
+        const docRef = doc(firebase.db, "users", user);
+        await updateDoc(docRef, {
+            postsmade: arrayUnion(postId)
+        });
+    }
     
     async function handleSubmit(event) {
         event.preventDefault();
@@ -69,6 +76,7 @@ const Create = () => {
         const errorMessage = validateCreate(docData)
         if(errorMessage === "no errors") {
             const docRef = await addDoc(collection(firebase.db, "posts"), docData)
+            updateUserProfile(docRef.id)
             toastMessage.success("Added successfully!")
             history.go(-1)
             console.log(docRef.id)
@@ -77,7 +85,7 @@ const Create = () => {
         }
     }
 
-    const currencies = [
+    const categories = [
         {
             value: 'Education',
         },
@@ -90,6 +98,9 @@ const Create = () => {
         {
             value: 'Music',
         },
+        {
+            value: 'Other'
+        }
     ];
 
     return (
@@ -129,7 +140,7 @@ const Create = () => {
                                 }}
                                 required
                             >
-                                {currencies.map((option) => (
+                                {categories.map((option) => (
                                     <MenuItem key={option.value} value={option.value}>
                                         {option.value}
                                     </MenuItem>

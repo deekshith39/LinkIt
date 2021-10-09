@@ -21,7 +21,7 @@ import firebase from "../../firebase/firebase";
 import { updateProfile } from "firebase/auth";
 
 // firestore
-import { addDoc, collection } from "firebase/firestore";
+import { addDoc, collection, doc, setDoc } from "firebase/firestore";
 
 
 // helpers
@@ -42,8 +42,8 @@ const SignUp = () => {
     type === "text" ? setName(value) : (type === "email" ? setEmail(value) : setPassword(value))
   }
 
-  async function createUser() {
-    await addDoc(collection(firebase.db, "users"), {
+  async function createUser(uid) {
+    await setDoc(doc(firebase.db, "users", uid), {
       name: name,
       email: email,
       postsmade: [],
@@ -61,7 +61,8 @@ const SignUp = () => {
     } else {
       firebase.createAccount(name, email, password)
         .then((userCred) => {
-          createUser()
+           // console.log(userCred.user.uid)
+          createUser(userCred.user.uid)
           history.push("/login")
           toastMessage.success("Created Account!")
           return updateProfile(userCred.user, {
