@@ -7,7 +7,7 @@ import Box from '@mui/material/Box';
 import CreateIcon from '@mui/icons-material/Create';
 import TextareaAutosize from '@mui/material/TextareaAutosize';
 import MenuItem from '@mui/material/MenuItem';
-
+import CircularProgress from '@mui/material/CircularProgress';
 
 // components
 import NavBar from '../components/NavBar'
@@ -32,6 +32,7 @@ import toastMessage from "../helpers/toast";
 
 
 const Create = () => {
+    const [busy, setBusy] = useState(false)
     const [user, setUser] = useContext(UserContext)
     const [title, setTitle] = useState('')
     const [category, setCategory] = useState('')
@@ -41,13 +42,13 @@ const Create = () => {
 
 
     function handleChange(event) {
-        const {value, name} = event.target;
+        const { value, name } = event.target;
         console.log(name, value)
-        if(name === "category") {
+        if (name === "category") {
             setCategory(value);
         } else if (name === "title") {
             setTitle(value);
-        } else if(name === "link") {
+        } else if (name === "link") {
             setLink(value);
         } else {
             setDesc(value);
@@ -60,9 +61,10 @@ const Create = () => {
             postsmade: arrayUnion(postId)
         });
     }
-    
+
     async function handleSubmit(event) {
         event.preventDefault();
+        //setBusy(true)
         const docData = {
             category: category,
             title: title,
@@ -74,13 +76,15 @@ const Create = () => {
         }
 
         const errorMessage = validateCreate(docData)
-        if(errorMessage === "no errors") {
+        if (errorMessage === "no errors") {
             const docRef = await addDoc(collection(firebase.db, "posts"), docData)
             updateUserProfile(docRef.id)
+            //setBusy(false)
             toastMessage.success("Added successfully!")
             history.go(-1)
             console.log(docRef.id)
         } else {
+            //setBusy(false)
             toastMessage.error(errorMessage)
         }
     }
@@ -106,6 +110,8 @@ const Create = () => {
     return (
         <div>
             <NavBar isUser={user} />
+
+
             <Container>
                 <div className="signin">
                     <Box

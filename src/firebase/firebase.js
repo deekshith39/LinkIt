@@ -20,7 +20,6 @@ class Firebase {
 
     createAccount(name, email, password) {
         return createUserWithEmailAndPassword(this.auth, email, password)
-        
     }
 
     logout() {

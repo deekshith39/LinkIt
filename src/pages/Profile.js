@@ -16,21 +16,23 @@ import { UserContext } from '../contexts/UserContext'
 import { doc, getDoc } from "firebase/firestore";
 import firebase from '../firebase/firebase';
 
+// MUI component
+import CircularProgress from '@mui/material/CircularProgress';
+
 const Profile = () => {
     const [user, setUser] = useContext(UserContext)
     const [userData, setUserData] = useState({})
-    const [busy, setBusy] = useState(false)
-    const [render, setRender] = useState(false)
+    const [busy, setBusy] = useState(true)
 
     useEffect(() => {
-        if(user) {
+        if (user) {
             getUserProfile()
         }
     }, [user])
 
     async function getUserProfile() {
         setBusy(true)
-        
+
         const docRef = doc(firebase.db, "users", user);
         const docSnap = await getDoc(docRef);
         setUserData(docSnap.data())
@@ -41,12 +43,17 @@ const Profile = () => {
     return (
         <div>
             <NavBar isUser={user} />
-            <div style={{
-                marginTop: '100px',
-                marginLeft: '50px'
-            }}>
-                {!busy ? <ProfileCard user={user} data={userData} /> : <h1>Loading...</h1>}
-            </div>
+            {
+                <div
+                    style={{
+                        marginTop: '100px',
+                        marginLeft: '50px'
+                    }}
+                >
+                    <ProfileCard data={userData} busy={busy}/>
+                    {/* <LikedSection data={userData} key={user}/> */}
+                </div>
+            }
         </div>
     );
 }

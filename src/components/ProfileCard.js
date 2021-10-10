@@ -1,50 +1,12 @@
+// MUI components
 import React from 'react';
-import { makeStyles, withStyles } from '@material-ui/core/styles';
+import { makeStyles } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
 import Box from '@material-ui/core/Box';
-import Tooltip from '@material-ui/core/Tooltip';
 import Typography from '@material-ui/core/Typography';
 import PersonIcon from '@mui/icons-material/Person';
 import { Row, Column, Item } from '@mui-treasury/components/flex';
-
-// Components
-import Card from './CardView';
-
-// Hooks
-import { useState, useEffect } from 'react'
-
-// External 
-import { ScrollMenu } from 'react-horizontal-scrolling-menu'
-
-// firebase
-import { doc, getDoc } from "firebase/firestore";
-import firebase from '../firebase/firebase';
-
-const StyledTooltip = withStyles({
-    tooltip: {
-        marginTop: '0.2rem',
-        backgroundColor: 'rgba(0,0,0,0.72)',
-        color: '#fff',
-    },
-})(Tooltip);
-
-const useBasicProfileStyles = makeStyles(({ palette }) => ({
-    avatar: {
-        borderRadius: 8,
-        backgroundColor: '#495869',
-    },
-    overline: {
-        fontSize: 10,
-        textTransform: 'uppercase',
-        letterSpacing: 1,
-        color: '#8D9CAD',
-    },
-    name: {
-        fontSize: 14,
-        fontWeight: 500,
-        color: '#495869',
-    },
-}));
+import CircularProgress from '@mui/material/CircularProgress';
 
 
 const useCardHeaderStyles = makeStyles(() => ({
@@ -53,11 +15,11 @@ const useCardHeaderStyles = makeStyles(() => ({
     },
     title: {
         fontSize: '2.25rem',
-        color: '#122740',
+        color: '#122740'
     },
     subheader: {
         fontSize: '1.275rem',
-        color: '#495869',
+        color: '#495869'
     },
 }));
 
@@ -104,49 +66,47 @@ const useStyles = makeStyles(() => ({
 
 export const ProfileCard = (props) => {
 
-    const { liked, postsmade } = props.data
-    const [likedPosts, setlikedPosts] = useState(null)
-    const [busy, setBusy] = useState(true)
-    
-
-    const style = {
-        textAlign: "left",
-        marginTop: "50px",
-        marginBottom: "10px"
-    }
-
-    useEffect(() => {
-        
-        if (liked) {
-            setBusy(true)
-            postDetails()
-        }
-
-    }, [liked])
-
-    useEffect(() => {
-
-        if(likedPosts) {
-            console.log(likedPosts)
-            setBusy(false)
-        }
-
-    }, [likedPosts])
+    // const { liked, postsmade } = props.data
+    // const [likedPosts, setlikedPosts] = useState([])
+    // const [busy, setBusy] = useState(true)
 
 
-    async function postDetails() {
 
-        var posts = []
 
-        liked.map(async (docId) => {
-            const docRef = doc(firebase.db, "posts", docId);
-            const docSnap = await getDoc(docRef);
-            posts.push([docSnap.data(), docSnap.id])
-        })
+    // useEffect(() => {
 
-        setlikedPosts(posts)
-    
-    }
+    //     if (props.data.liked) {
+    //         setBusy(true)
+    //         // postDetails()
+    //     }
+
+    // }, [props.data.liked])
+
+    // useEffect(() => {
+
+    //     if(likedPosts) {
+    //         console.log(likedPosts)
+    //         // setBusy(false)
+    //     }
+
+    // }, [likedPosts])
+
+
+    // async function postDetails() {
+    //     var posts = []
+    //     props.data.liked.map((docId) => {
+    //         postDetailsUtil(docId, posts)
+    //     })
+    //     setlikedPosts(posts)
+    // }
+
+    // async function postDetailsUtil(docId, posts) {
+
+    //     const docRef = doc(firebase.db, "posts", docId);
+    //     const docSnap = await getDoc(docRef);
+    //     posts.push([docSnap.data(), docSnap.id])
+
+    // }
 
     // async function getUserProfile() {
     //     const docRef = doc(firebase.db, "users", props.user);
@@ -170,25 +130,25 @@ export const ProfileCard = (props) => {
     return (
         <div>
             {
-                
-                    <>
-                        <Grid container spacing={4} justify={'center'}>
-                            <Grid item xs={12} sm={9} lg={5}>
-                                <Row className={styles.card} p={{ xs: 0.5, sm: 0.75, lg: 1 }} gap={gap}>
-                                    <Item>
-                                        <Box height={200} width={200} bgcolor={'#F4F7FA'} borderRadius={15} margin={'25px'}>
-                                            <PersonIcon sx={{ fontSize: 200 }} />
-                                        </Box>
-                                    </Item>
-                                    <Column>
-                                        {
-                                            props.data && <CardHeader data={props.data} />
-                                        }
-                                    </Column>
-                                </Row>
-                            </Grid>
+                !props.busy ?
+                <>
+                    <Grid container spacing={4} justifyContent={'center'}>
+                        <Grid item xs={12} sm={9} lg={5}>
+                            <Row className={styles.card} p={{ xs: 0.5, sm: 0.75, lg: 1 }} gap={gap}>
+                                <Item>
+                                    <Box height={200} width={200} bgcolor={'#F4F7FA'} borderRadius={15} margin={'25px'}>
+                                        <PersonIcon sx={{ fontSize: 200 }} />
+                                    </Box>
+                                </Item>
+                                <Column>
+                                    {
+                                        props.data && <CardHeader data={props.data} />
+                                    }
+                                </Column>
+                            </Row>
                         </Grid>
-                        <div>
+                    </Grid>
+                    {/* <div>
                             <Typography
                                 variant="h5"
                                 color="primary"
@@ -198,19 +158,19 @@ export const ProfileCard = (props) => {
                             </Typography>
                             <ScrollMenu>
                                 {
-                                    !busy ? // console.log("busy") : console.log("not busy")
+                                    // console.log(likedPosts)
                                     likedPosts && likedPosts.map(data => {
-                                        console.log(busy)
                                         console.log(data)
-                                        // return (
-                                        //     <Card data={data} user={props.user} key={data[1]} />
-                                        // )
-                                    }) : <h1>Loading..</h1>
+                                        return (
+                                            <Card data={data} key={data[1]} />
+                                        )
+                                    })
                                 }
                             </ScrollMenu>
 
-                        </div>
-                    </> 
+                        </div> */}
+                </>
+                : <CircularProgress />
             }
         </div>
     );
