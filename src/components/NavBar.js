@@ -30,7 +30,7 @@ import firebase from '../firebase/firebase';
 // helpers
 import toastMessage from '../helpers/toast';
 
-// hooks
+// router hooks
 import { useHistory } from 'react-router';
 import { Link } from 'react-router-dom';
 

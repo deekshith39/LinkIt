@@ -44,7 +44,7 @@ const Dashboard = () => {
             <NavBar isUser={user} />
             <div style={{
                 marginTop: "100px",
-                marginLeft: '50px'
+                marginLeft: "50px"
             }}>
                 {
                     categories.map(data => {

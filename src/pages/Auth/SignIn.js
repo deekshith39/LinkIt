@@ -121,23 +121,26 @@ const SignIn = () => {
               {forgot ? "Reset" : "Login"}
             </Button>
 
-            {!forgot ?
-              <div className="bottom-links">
-                <Typography
-                  style={{
-                    marginRight: "50px"
-                  }}
-                >
-                  <Link to="/signup"><p>Signup?</p></Link>
-                </Typography>
-                <Typography
-                  style={{
-                    marginLeft: "50px"
-                  }}
-                >
-                  <Link to="/login/forgot" ><p>Forgot?</p></Link>
-                </Typography>
-              </div> : null}
+            {
+              !forgot ?
+                <div className="bottom-links">
+                  <Typography
+                    style={{
+                      marginRight: "50px"
+                    }}
+                  >
+                    <Link to="/signup"><p>Signup?</p></Link>
+                  </Typography>
+                  <Typography
+                    style={{
+                      marginLeft: "50px"
+                    }}
+                  >
+                    <Link to="/login/forgot" ><p>Forgot?</p></Link>
+                  </Typography>
+                </div>
+                : null
+            }
           </div>
         </Box>
       </div>

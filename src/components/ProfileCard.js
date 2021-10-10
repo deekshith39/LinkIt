@@ -7,7 +7,11 @@ import Typography from '@material-ui/core/Typography';
 import PersonIcon from '@mui/icons-material/Person';
 import { Row, Column, Item } from '@mui-treasury/components/flex';
 import CircularProgress from '@mui/material/CircularProgress';
+import { Button } from '@mui/material';
+import CreateIcon from '@mui/icons-material/Create';
 
+// Router Hooks
+import { Link } from 'react-router-dom';
 
 const useCardHeaderStyles = makeStyles(() => ({
     root: {
@@ -21,6 +25,9 @@ const useCardHeaderStyles = makeStyles(() => ({
         fontSize: '1.275rem',
         color: '#495869'
     },
+    link: {
+        textDecoration: 'none'
+    }
 }));
 
 const CardHeader = (props) => {
@@ -46,6 +53,21 @@ const CardHeader = (props) => {
                     <Typography variant='subtitle1'>
                         Liked Posts: {liked && liked.length}
                     </Typography>
+
+                    <Link to="/profile/edit" className={styles.link}>
+                        <Button
+                            // onClick={handleClick}
+                            color="primary"
+                            startIcon={<CreateIcon />}
+                            size="large"
+                            variant="contained"
+                            style={{
+                                margin: "25px"
+                            }}
+                        >
+                            Update
+                        </Button>
+                    </Link>
                 </Item>
             </Column>
         </>
@@ -131,24 +153,24 @@ export const ProfileCard = (props) => {
         <div>
             {
                 !props.busy ?
-                <>
-                    <Grid container spacing={4} justifyContent={'center'}>
-                        <Grid item xs={12} sm={9} lg={5}>
-                            <Row className={styles.card} p={{ xs: 0.5, sm: 0.75, lg: 1 }} gap={gap}>
-                                <Item>
-                                    <Box height={200} width={200} bgcolor={'#F4F7FA'} borderRadius={15} margin={'25px'}>
-                                        <PersonIcon sx={{ fontSize: 200 }} />
-                                    </Box>
-                                </Item>
-                                <Column>
-                                    {
-                                        props.data && <CardHeader data={props.data} />
-                                    }
-                                </Column>
-                            </Row>
+                    <>
+                        <Grid container spacing={4} justifyContent={'center'}>
+                            <Grid item xs={12} sm={9} lg={5}>
+                                <Row className={styles.card} p={{ xs: 0.5, sm: 0.75, lg: 1 }} gap={gap}>
+                                    <Item>
+                                        <Box height={200} width={200} bgcolor={'#F4F7FA'} borderRadius={15} margin={'25px'}>
+                                            <PersonIcon sx={{ fontSize: 200 }} />
+                                        </Box>
+                                    </Item>
+                                    <Column>
+                                        {
+                                            props.data && <CardHeader data={props.data} />
+                                        }
+                                    </Column>
+                                </Row>
+                            </Grid>
                         </Grid>
-                    </Grid>
-                    {/* <div>
+                        {/* <div>
                             <Typography
                                 variant="h5"
                                 color="primary"
@@ -169,8 +191,8 @@ export const ProfileCard = (props) => {
                             </ScrollMenu>
 
                         </div> */}
-                </>
-                : <CircularProgress />
+                    </>
+                    : <CircularProgress />
             }
         </div>
     );

@@ -5,7 +5,7 @@ import SignUp from './pages/Auth/SignUp';
 import Profile from './pages/Profile';
 import Create from './pages/Create'
 import About from './pages/About';
-import EditProfile from './pages/EditProfile';
+import EditProfile from './pages/Auth/EditProfile';
 
 import './App.css';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'

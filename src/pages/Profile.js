@@ -16,8 +16,6 @@ import { UserContext } from '../contexts/UserContext'
 import { doc, getDoc } from "firebase/firestore";
 import firebase from '../firebase/firebase';
 
-// MUI component
-import CircularProgress from '@mui/material/CircularProgress';
 
 const Profile = () => {
     const [user, setUser] = useContext(UserContext)
@@ -25,9 +23,13 @@ const Profile = () => {
     const [busy, setBusy] = useState(true)
 
     useEffect(() => {
-        if (user) {
-            getUserProfile()
-        }
+
+        setTimeout(() => {
+            if (user) {
+                getUserProfile()
+            }
+        }, 3000)
+        
     }, [user])
 
     async function getUserProfile() {
@@ -38,6 +40,7 @@ const Profile = () => {
         setUserData(docSnap.data())
 
         setBusy(false)
+
     }
 
     return (
@@ -50,7 +53,7 @@ const Profile = () => {
                         marginLeft: '50px'
                     }}
                 >
-                    <ProfileCard data={userData} busy={busy}/>
+                    <ProfileCard data={userData} busy={busy} />
                     {/* <LikedSection data={userData} key={user}/> */}
                 </div>
             }
