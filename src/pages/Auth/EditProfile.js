@@ -65,14 +65,14 @@ const EditProfile = () => {
     }
 
     function reauthenticateAndUpdate(currentEmail, password) {
-        console.log(currentEmail, password)
+        // console.log(currentEmail, password)
         var cred = EmailAuthProvider.credential(
             currentEmail,
             password
         );
-        console.log(cred)
+        // console.log(cred)
         reauthenticateWithCredential(firebase.auth.currentUser, cred).then(() => {
-            console.log("Re-Auth Successful")
+            // console.log("Re-Auth Successful")
             updateUserAuth()
             history.push("/profile")
         }).catch((err) => {
@@ -115,7 +115,7 @@ const EditProfile = () => {
             updateProfile(firebase.auth.currentUser, {
                 displayName: newName
             }).then(() => {
-                console.log("Profile Updated!")
+                // console.log("Profile Updated!")
                 updateOnFirestore("name")
             }).catch((err) => {
                 console.log(err.message)

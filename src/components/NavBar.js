@@ -52,7 +52,7 @@ export default function PrimarySearchAppBar(props) {
   const classes = useStyles()
 
   const handleProfileMenuOpen = (event, isUser) => {
-    console.log(isUser)
+    // console.log(isUser)
     isUser ? setAnchorEl(event.currentTarget) : history.push("/login")
   };
 
