@@ -1,4 +1,4 @@
-Tech Stack:
+Build with:
 - ReactJS
 - MaterialUI
 - Firebase
