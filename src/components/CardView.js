@@ -134,10 +134,15 @@ const CardView = (props) => {
                 <Card
                     sx={{
                         width: "200px",
-                        boxShadow: '0 8px 16px 0 #BDC9D7',
+                        boxShadow: "0 8px 16px 0 #BDC9D7",
                         padding: "10px",
                         color: "grey",
-                        marginRight: "15px"
+                        marginRight: "15px",
+                        hover: {
+                            "&:hover": {
+                                backgroundColor: 'rgb(7, 177, 77, 0.42)'
+                            }
+                        }
                         // border: "1px solid white"
                     }}
                 >

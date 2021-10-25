@@ -4,7 +4,6 @@ import Dashboard from './pages/Dashboard';
 import SignUp from './pages/Auth/SignUp';
 import Profile from './pages/Profile';
 import Create from './pages/Create'
-import About from './pages/About';
 import EditProfile from './pages/Auth/EditProfile';
 import Search from './pages/Search'
 
@@ -28,7 +27,6 @@ function App() {
             <Route path="/profile" exact component={Profile} />
             <Route path="/profile/edit" component={EditProfile} />
             <Route path="/create" component={Create} />
-            <Route path="/about" component={About} />
           </Switch>
         </Router>
       </div>

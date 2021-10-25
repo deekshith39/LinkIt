@@ -1,20 +1,17 @@
 import * as React from 'react';
 
 // MUI components
-import { styled, alpha } from '@mui/material/styles';
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
 import Toolbar from '@mui/material/Toolbar';
 import IconButton from '@mui/material/IconButton';
 import Typography from '@mui/material/Typography';
-import InputBase from '@mui/material/InputBase';
 import MenuItem from '@mui/material/MenuItem';
 import Menu from '@mui/material/Menu';
 import SearchIcon from '@mui/icons-material/Search';
 import AccountCircle from '@mui/icons-material/AccountCircle';
 import MoreIcon from '@mui/icons-material/MoreVert';
 import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline';
-import InfoIcon from '@mui/icons-material/Info';
 import { makeStyles } from '@mui/styles';
 
 
@@ -37,7 +34,8 @@ import { Link } from 'react-router-dom';
 
 const useStyles = makeStyles({
   link: {
-    textDecoration: 'none'
+    textDecoration: 'none',
+    color: 'black'
   }
 })
 
@@ -126,23 +124,23 @@ export default function PrimarySearchAppBar(props) {
       <MenuItem onClick={handleMenuClose}>
         <IconButton
           size="large"
-          color="inherit">
-          <AddCircleOutlineIcon />
+          color="inherit"
+        >
+          <SearchIcon />
         </IconButton>
-        <Link to={props.isUser ? "/create" : "/login"} className={classes.link}>
-          <p>Create</p>
+        <Link to="/search" className={classes.link}>
+          <p>Search</p>
         </Link>
       </MenuItem>
 
       <MenuItem onClick={handleMenuClose}>
         <IconButton
           size="large"
-          color="inherit"
-        >
-          <InfoIcon />
+          color="inherit">
+          <AddCircleOutlineIcon />
         </IconButton>
-        <Link to="/about" className={classes.link}>
-          <p>About</p>
+        <Link to={props.isUser ? "/create" : "/login"} className={classes.link}>
+          <p>Create</p>
         </Link>
       </MenuItem>
 
@@ -175,19 +173,10 @@ export default function PrimarySearchAppBar(props) {
                 color: 'white'
               }}
             >
-              <strong>LinkIT</strong>
+              <strong>LinkIt</strong>
             </Typography>
           </Link>
 
-          {/* <Search>
-            <SearchIconWrapper>
-              <SearchIcon />
-            </SearchIconWrapper>
-            <StyledInputBase
-              placeholder="Search…"
-              inputProps={{ 'aria-label': 'search' }}
-            />
-          </Search> */}
           <Box sx={{ flexGrow: 1 }} />
           <Box sx={{ display: { xs: 'none', md: 'flex' } }}>
             <Link to="/search" className={classes.link}>
@@ -217,20 +206,6 @@ export default function PrimarySearchAppBar(props) {
                   color: 'white'
                 }}>
                   Create
-                </Typography>
-              </IconButton>
-            </Link>
-            <Link to="/about" className={classes.link}>
-              <IconButton
-                size="large"
-                sx={{ color: 'white' }}
-              >
-                <InfoIcon />
-                <Typography sx={{
-                  margin: "5px",
-                  color: "white"
-                }}>
-                  About
                 </Typography>
               </IconButton>
             </Link>

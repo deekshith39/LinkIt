@@ -17,6 +17,7 @@ import firebase from '../firebase/firebase';
 
 
 const Search = () => {
+    
     const [user, isUser] = useContext(UserContext);
     const [filteredLinks, setFilteredLinks] = useState([]);
     const [filter, setFilter] = useState("");
@@ -29,9 +30,8 @@ const Search = () => {
     }, []);
 
     useEffect(() => {
-
         handleSearch()
-
+        // eslint-disable-next-line
     }, [filter])
 
     async function getInitialLinks() {
