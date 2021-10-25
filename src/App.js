@@ -6,6 +6,7 @@ import Profile from './pages/Profile';
 import Create from './pages/Create'
 import About from './pages/About';
 import EditProfile from './pages/Auth/EditProfile';
+import Search from './pages/Search'
 
 import './App.css';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
@@ -23,6 +24,7 @@ function App() {
             <Route path="/login" exact component={SignIn} />
             <Route path="/login/forgot" component={SignIn} />
             <Route path="/signup" component={SignUp} />
+            <Route path="/search" component={Search} />
             <Route path="/profile" exact component={Profile} />
             <Route path="/profile/edit" component={EditProfile} />
             <Route path="/create" component={Create} />

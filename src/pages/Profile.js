@@ -1,18 +1,18 @@
-// components
+// Components
 import NavBar from '../components/NavBar'
 import { ProfileCard } from '../components/ProfileCard'
-import '@fontsource/roboto/300.css';
-import '@fontsource/roboto/400.css';
-import '@fontsource/roboto/500.css';
-import '@fontsource/roboto/700.css';
+import '@fontsource/roboto/300.css'
+import '@fontsource/roboto/400.css'
+import '@fontsource/roboto/500.css'
+import '@fontsource/roboto/700.css'
 
 // Hooks
 import { useContext, useEffect, useState } from 'react'
 
-// context
+// Context
 import { UserContext } from '../contexts/UserContext'
 
-// firebase
+// Firebase
 import { doc, getDoc } from "firebase/firestore";
 import firebase from '../firebase/firebase';
 
@@ -29,7 +29,7 @@ const Profile = () => {
                 getUserProfile()
             }
         }, 3000)
-        
+
     }, [user])
 
     async function getUserProfile() {
@@ -40,7 +40,6 @@ const Profile = () => {
         setUserData(docSnap.data())
 
         setBusy(false)
-
     }
 
     return (

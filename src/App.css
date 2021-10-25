@@ -37,3 +37,28 @@
   }
 }
 
+/* Search Results Preview */
+
+.link-preview {
+  /* width: 75%;
+  height: 100%;   */
+  padding: 0px 10px 10px 10px;
+  overflow: hidden;
+  background-color: aliceblue;
+  margin: 10px 200px 10px 200px;
+  display: block;
+}
+
+.link-preview:hover {
+  box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.1)
+}
+
+.link-preview h2 {
+  font-size: 20px;
+  color: #332026;
+}
+
+.link-preview a {
+  text-decoration: none;
+}
+

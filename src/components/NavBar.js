@@ -41,45 +41,6 @@ const useStyles = makeStyles({
   }
 })
 
-const Search = styled('div')(({ theme }) => ({
-  position: 'relative',
-  borderRadius: theme.shape.borderRadius,
-  backgroundColor: alpha(theme.palette.common.white, 0.15),
-  '&:hover': {
-    backgroundColor: alpha(theme.palette.common.white, 0.25),
-  },
-  marginRight: theme.spacing(2),
-  marginLeft: 0,
-  width: '100%',
-  [theme.breakpoints.up('sm')]: {
-    marginLeft: theme.spacing(3),
-    width: 'auto',
-  },
-}));
-
-const SearchIconWrapper = styled('div')(({ theme }) => ({
-  padding: theme.spacing(0, 2),
-  height: '100%',
-  position: 'absolute',
-  pointerEvents: 'none',
-  display: 'flex',
-  alignItems: 'center',
-  justifyContent: 'center',
-}));
-
-const StyledInputBase = styled(InputBase)(({ theme }) => ({
-  color: 'inherit',
-  '& .MuiInputBase-input': {
-    padding: theme.spacing(1, 1, 1, 0),
-    // vertical padding + font size from searchIcon
-    paddingLeft: `calc(1em + ${theme.spacing(4)})`,
-    transition: theme.transitions.create('width'),
-    width: '100%',
-    [theme.breakpoints.up('md')]: {
-      width: '20ch',
-    },
-  },
-}));
 
 export default function PrimarySearchAppBar(props) {
   const [anchorEl, setAnchorEl] = React.useState(null);
@@ -218,7 +179,7 @@ export default function PrimarySearchAppBar(props) {
             </Typography>
           </Link>
 
-          <Search>
+          {/* <Search>
             <SearchIconWrapper>
               <SearchIcon />
             </SearchIconWrapper>
@@ -226,9 +187,23 @@ export default function PrimarySearchAppBar(props) {
               placeholder="Search…"
               inputProps={{ 'aria-label': 'search' }}
             />
-          </Search>
+          </Search> */}
           <Box sx={{ flexGrow: 1 }} />
           <Box sx={{ display: { xs: 'none', md: 'flex' } }}>
+            <Link to="/search" className={classes.link}>
+              <IconButton
+                size="large"
+                sx={{ color: 'white' }}
+              >
+                <SearchIcon />
+                <Typography sx={{
+                  margin: "5px",
+                  color: 'white'
+                }}>
+                  Search
+                </Typography>
+              </IconButton>
+            </Link>
             <Link to={props.isUser ? "/create" : "/login"}
               className={classes.link}
             >
@@ -248,7 +223,7 @@ export default function PrimarySearchAppBar(props) {
             <Link to="/about" className={classes.link}>
               <IconButton
                 size="large"
-                sx={{color: 'white'}}
+                sx={{ color: 'white' }}
               >
                 <InfoIcon />
                 <Typography sx={{
