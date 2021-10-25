@@ -24,6 +24,10 @@ import { sendPasswordResetEmail } from "firebase/auth";
 // helpers
 import toastMessage from "../../helpers/toast";
 
+// components
+import NavBar from '../../components/NavBar'
+
+
 
 const SignIn = () => {
 
@@ -75,6 +79,7 @@ const SignIn = () => {
 
   return (
     <Container>
+      <NavBar />
       <div className="signin">
         <Box
           sx={{
