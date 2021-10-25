@@ -13,7 +13,7 @@ import AccountCircle from '@mui/icons-material/AccountCircle';
 import MoreIcon from '@mui/icons-material/MoreVert';
 import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline';
 import { makeStyles } from '@mui/styles';
-
+import HomeIcon from '@mui/icons-material/Home';
 
 // Roboto Font
 import '@fontsource/roboto/300.css';
@@ -130,6 +130,18 @@ export default function PrimarySearchAppBar(props) {
         </IconButton>
         <Link to="/search" className={classes.link}>
           <p>Search</p>
+        </Link>
+      </MenuItem>
+
+      <MenuItem onClick={handleMenuClose}>
+        <IconButton
+          size="large"
+          color="inherit"
+        >
+          <HomeIcon />
+        </IconButton>
+        <Link to="/" className={classes.link}>
+          <p>Dashboard</p>
         </Link>
       </MenuItem>
 
