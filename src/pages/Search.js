@@ -54,7 +54,8 @@ const Search = () => {
             return (
                 link.title.toLowerCase().includes(query) ||
                 link.description.toLowerCase().includes(query) ||
-                link.link.toLowerCase().includes(query)
+                link.link.toLowerCase().includes(query) ||
+                link.category.toLowerCase().includes(query)
             )
         })
         setFilteredLinks(matchedLinks);
